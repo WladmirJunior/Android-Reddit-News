@@ -1,7 +1,9 @@
 package wlad.com.netbeetest.ui.fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,16 +18,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
 import wlad.com.netbeetest.R;
 import wlad.com.netbeetest.adpters.NewsRecyclerViewAdapter;
-import wlad.com.netbeetest.api.NewsListServiceApi;
-import wlad.com.netbeetest.model.NewsData;
-import wlad.com.netbeetest.model.NewsList;
+import wlad.com.netbeetest.api.services.NewsListService;
+import wlad.com.netbeetest.helpers.CustomTabsHelper;
+import wlad.com.netbeetest.models.News;
+import wlad.com.netbeetest.models.NewsData;
 
 import static android.content.ContentValues.TAG;
 
@@ -33,24 +31,20 @@ import static android.content.ContentValues.TAG;
  * Created by wlad on 22/05/17.
  */
 
-public class ListItemFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+//TODO Criar o contrato para esse fragment não ter de cuidar dos listeners abaixo
+
+public class ListItemFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, NewsListService.NewsListServiceListener, NewsRecyclerViewAdapter.NewsClickListener{
 
     @BindView(R.id.recycler_fragment)
     RecyclerView recyclerView;
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout refreshLayout;
 
-    private List<NewsData> newsDataList;
     private NewsRecyclerViewAdapter adapter;
+    private NewsListService newsListService;
 
     public static ListItemFragment newInstance(){
         return new ListItemFragment();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 
     @Nullable
@@ -59,38 +53,13 @@ public class ListItemFragment extends Fragment implements SwipeRefreshLayout.OnR
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         ButterKnife.bind(this, view);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.reddit.com/r/Android/new/")
-                .addConverterFactory(JacksonConverterFactory.create())
-                .build();
+        newsListService = new NewsListService(this);
+        newsListService.start();
 
-        NewsListServiceApi service = retrofit.create(NewsListServiceApi.class);
-
-        //TODO Criar uma classe para encapsular isso
-
-        Call<NewsList> callNewsList = service.getNews();
-        callNewsList.enqueue(new Callback<NewsList>() {
-            @Override
-            public void onResponse(Call<NewsList> call, Response<NewsList> response) {
-                Log.d(TAG, "onResponse: "+response);
-                if(response.code()==200){
-                    adapter.clear();
-                    adapter.addAll(response.body().newsListData.getNewsList());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<NewsList> call, Throwable t) {
-                Log.d(TAG, "onFailure: "+call);
-            }
-        });
-
-        newsDataList = new ArrayList<>();
-
-        adapter = new NewsRecyclerViewAdapter(newsDataList);
+        adapter = new NewsRecyclerViewAdapter(getActivity(), new ArrayList<NewsData>());
+        adapter.setNewsClickListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(adapter);
-
         refreshLayout.setOnRefreshListener(this);
 
         return view;
@@ -98,8 +67,24 @@ public class ListItemFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
-        adapter.clear();
-        //adapter.addAll();
+        newsListService.getResponse();
+    }
+
+    @Override
+    public void onReceiverResponser(List<News> list, String error) {
+        if(list != null){
+            adapter.clear();
+            adapter.addAll(list);
+        }
+        else {
+            Log.d(TAG, "onReceiverResponser Error: "+error);
+        }
         refreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void onItemClick(NewsData newsData) {
+        CustomTabsIntent customTabsIntent = CustomTabsHelper.getInstance(getActivity());
+        customTabsIntent.launchUrl(getActivity(), Uri.parse(newsData.url));
     }
 }
