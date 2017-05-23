@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="9d7061ac123185fb566b255bcdf2c8f026aafa12">
+        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_0f2ffe5670ad837e4406d553164255d399160dc8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_4fb05cb1d67b73da2b41725ee9397750ff10c44d/classes.dex" />
+    </item>
+
+</items>
