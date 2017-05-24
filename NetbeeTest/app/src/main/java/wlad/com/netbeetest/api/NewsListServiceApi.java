@@ -10,6 +10,6 @@ import wlad.com.netbeetest.models.NewsList;
 
 public interface NewsListServiceApi {
 
-    @GET("/.json")
+    @GET(".json")
     Call<NewsList> getNews();
 }

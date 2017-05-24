@@ -3,12 +3,14 @@ package wlad.com.netbeetest.helpers;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import wlad.com.netbeetest.BuildConfig;
 
 /**
  * Created by wlad on 23/05/17.
  */
 
-public class OkhttpHelper {
+public class OkHttpHelper {
 
     public static OkHttpClient getClient() {
         return getClient(15, TimeUnit.SECONDS);

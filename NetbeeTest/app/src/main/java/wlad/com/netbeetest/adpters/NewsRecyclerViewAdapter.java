@@ -48,9 +48,12 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
 
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
-        holder.title.setText(newsDataList.get(position).title);
-        holder.author.setText(String.format("Submitted by %s", newsDataList.get(position).author));
-        Glide.with(context).load(newsDataList.get(position).thumbnail).into(holder.thumbImage);
+        holder.title.setText(newsDataList.get(position).getTitle());
+        holder.author.setText(String.format("Submitted by %s", newsDataList.get(position).getAuthor()));
+        Glide.with(context)
+                .load(newsDataList.get(position).getThumbnail())
+                .placeholder(R.drawable.default_image)
+                .into(holder.thumbImage);
     }
 
     @Override
@@ -66,7 +69,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
     public void addAll(List<News> list){
         List<NewsData> newsDatas = new ArrayList<>();
         for (News news:list) {
-            newsDatas.add(news.newsData);
+            newsDatas.add(news.getNewsData());
         }
         newsDataList.addAll(newsDatas);
         notifyDataSetChanged();
@@ -77,6 +80,10 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         final ImageView thumbImage;
         final TextView title;
         final TextView author;
+
+        void configure(){
+            author.setText("");
+        }
 
         NewsViewHolder(View itemView) {
             super(itemView);
