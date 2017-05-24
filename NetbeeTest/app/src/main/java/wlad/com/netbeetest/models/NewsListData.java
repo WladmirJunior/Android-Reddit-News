@@ -25,4 +25,12 @@ public class NewsListData {
     List<News> getNewsList() {
         return newsList;
     }
+
+    public String getAfter() {
+        return after;
+    }
+
+    public void setAfter(String after) {
+        this.after = after;
+    }
 }

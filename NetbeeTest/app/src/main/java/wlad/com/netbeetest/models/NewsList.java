@@ -19,4 +19,10 @@ public class NewsList {
     public List<News> getNewsList() {
         return newsListData.getNewsList();
     }
+
+    public String getNewsAfter() {
+        return newsListData.getAfter();
+    }
+
+    public void setNewsAfter(String after){ newsListData.setAfter(after); }
 }

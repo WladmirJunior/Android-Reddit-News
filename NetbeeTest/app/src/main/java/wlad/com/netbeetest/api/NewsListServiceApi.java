@@ -2,6 +2,7 @@ package wlad.com.netbeetest.api;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import wlad.com.netbeetest.models.NewsList;
 
 /**
@@ -12,4 +13,7 @@ public interface NewsListServiceApi {
 
     @GET(".json")
     Call<NewsList> getNews();
+
+    @GET(".json")
+    Call<NewsList> getNews(@Query("after") String after);
 }

@@ -10,22 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e44023-01bf-4170-a399-d5391a32f1c8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/StateMaintainer.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/api/services/NewsListService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/fragments/ListItemFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/fragments/RecyclerFragment.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/ListItemPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemPresenter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/Mvp.java" afterPath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/contracts/Mvp.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/NewsListModel.java" afterPath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/models/NewsListModel.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemModelPresenter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/adpters/NewsRecyclerViewAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/adpters/NewsRecyclerViewAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/api/NewsListServiceApi.java" afterPath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/api/NewsListServiceApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsList.java" afterPath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsListData.java" afterPath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsListData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/contracts/Mvp.java" afterPath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/contracts/Mvp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/models/NewsListModel.java" afterPath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/models/NewsListModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,8 +56,8 @@
       <file leaf-file-name="Mvp.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/contracts/Mvp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+            <state relative-caret-position="405">
+              <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,26 +68,24 @@
       <file leaf-file-name="NewsListModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/models/NewsListModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+            <state relative-caret-position="585">
+              <caret line="49" column="58" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1052#1053#0" expanded="true" />
-                <element signature="e#1092#1093#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListItemPresenter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemPresenter.java">
+      <file leaf-file-name="ListItemModelPresenter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemModelPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="261">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1266#1267#0" expanded="true" />
-                <element signature="e#1309#1310#0" expanded="true" />
+                <element signature="e#1091#1121#0" expanded="true" />
+                <element signature="e#2266#2296#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -100,16 +94,15 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="553">
-              <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+            <state relative-caret-position="90">
+              <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#startMvp#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#initialize#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#reinitialize#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#showAlert#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#showLoad#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#4103#4104#0" expanded="true" />
-                <element signature="e#4143#4144#0" expanded="true" />
-                <element signature="e#4190#4191#0" expanded="true" />
-                <element signature="e#4247#4248#0" expanded="true" />
+                <element signature="method#addList#0;class#MainActivity#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -2054,7 +2047,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/helpers/OkhttpHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/helpers/OkHttpHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/helpers/RetrofitHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/api/NewsListServiceApi.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/helpers/CustomTabsHelper.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_list.xml" />
@@ -2063,9 +2055,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_recycler.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/News.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/api/services/NewsListService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsList.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsData.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsListData.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/BaseActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/toolbar.xml" />
@@ -2081,11 +2071,15 @@
         <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/fragments/ListItemFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/models/NewsListModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/adpters/NewsRecyclerViewAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/models/NewsListModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/api/NewsListServiceApi.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsListData.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsList.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/contracts/Mvp.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemModelPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -2263,6 +2257,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="presenters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NetbeeTest" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="netbeetest" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pattern" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2286,6 +2306,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NetbeeTest" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="netbeetest" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2672,7 +2714,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.9107527" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.855914" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2748,72 +2790,41 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemPresenter.java</url>
-          <line>37</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemModelPresenter.java</url>
+          <line>41</line>
           <properties />
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java</url>
-          <line>63</line>
-          <properties />
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java</url>
-          <line>133</line>
-          <properties />
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java</url>
-          <line>134</line>
-          <properties />
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/models/NewsListModel.java</url>
-          <line>47</line>
-          <properties />
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java</url>
-          <line>122</line>
-          <properties />
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java</url>
-          <line>127</line>
-          <properties />
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemPresenter.java</url>
-          <line>32</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemModelPresenter.java</url>
+          <line>34</line>
           <properties />
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java</url>
-          <line>57</line>
+          <line>64</line>
           <properties />
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java</url>
-          <line>132</line>
+          <line>153</line>
           <properties />
-          <option name="timeStamp" value="52" />
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java</url>
+          <line>154</line>
+          <properties />
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="53" />
+      <option name="time" value="58" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/fragments/ListItemFragment.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_list.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -2956,14 +2967,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/api/NewsListServiceApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/adpters/BaseRecyclerViewAdpter.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/helpers/CustomTabsHelper.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -3028,25 +3031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsListData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-          <folding>
-            <element signature="e#447#448#0" expanded="true" />
-            <element signature="e#478#479#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -3098,6 +3082,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="2191" column="0" selection-start-line="2191" selection-start-column="0" selection-end-line="2191" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3146,18 +3131,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/fragments/ListItemFragment.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/StateMaintainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
-          <folding>
-            <element signature="method#firstTimeIn#0;class#StateMaintainer#0" expanded="false" />
-            <element signature="method#get#0;class#StateMaintainer#0" expanded="false" />
-            <element signature="class#StateManagerFragment#0;class#StateMaintainer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/BaseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -3174,60 +3147,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/adpters/NewsRecyclerViewAdapter.java">
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-25/android/nfc/tech/MifareUltralight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="71" column="28" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/contracts/Mvp.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/adpters/NewsRecyclerViewAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+        <state relative-caret-position="300">
+          <caret line="68" column="16" selection-start-line="68" selection-start-column="16" selection-end-line="68" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/StateMaintainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#firstTimeIn#0;class#StateMaintainer#0" expanded="false" />
+            <element signature="method#get#0;class#StateMaintainer#0" expanded="false" />
+            <element signature="class#StateManagerFragment#0;class#StateMaintainer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/api/NewsListServiceApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsListData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+          <folding>
+            <element signature="e#614#615#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/models/NewsListModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        <state relative-caret-position="585">
+          <caret line="49" column="58" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1052#1053#0" expanded="true" />
-            <element signature="e#1092#1093#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemPresenter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/contracts/Mvp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="405">
+          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1266#1267#0" expanded="true" />
-            <element signature="e#1309#1310#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/pattern/presenters/ListItemModelPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1091#1121#0" expanded="true" />
+            <element signature="e#2266#2296#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/models/NewsList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/wlad/com/netbeetest/ui/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+        <state relative-caret-position="90">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#startMvp#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#initialize#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#reinitialize#0;class#MainActivity#0" expanded="false" />
             <element signature="method#showAlert#0;class#MainActivity#0" expanded="false" />
             <element signature="method#showLoad#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#4103#4104#0" expanded="true" />
-            <element signature="e#4143#4144#0" expanded="true" />
-            <element signature="e#4190#4191#0" expanded="true" />
-            <element signature="e#4247#4248#0" expanded="true" />
+            <element signature="method#addList#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -6,6 +6,8 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -14,15 +16,17 @@ import java.util.List;
 import wlad.com.netbeetest.R;
 import wlad.com.netbeetest.adpters.NewsRecyclerViewAdapter;
 import wlad.com.netbeetest.databinding.ActivityMainBinding;
+import wlad.com.netbeetest.models.News;
 import wlad.com.netbeetest.models.NewsData;
 import wlad.com.netbeetest.pattern.StateMaintainer;
 import wlad.com.netbeetest.pattern.contracts.Mvp;
-import wlad.com.netbeetest.pattern.presenters.ListItemPresenter;
+import wlad.com.netbeetest.pattern.presenters.ListItemModelPresenter;
 import wlad.com.netbeetest.utils.VerticalSpaceItemDecoration;
 
-public class MainActivity extends BaseActivity implements Mvp.RequiredViewOperations, NewsRecyclerViewAdapter.NewsClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends BaseActivity implements Mvp.ViewOperations, NewsRecyclerViewAdapter.NewsClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private static final String LIST_NEWS = "newsList";
+    private static final String AFTER_NEWS = "afterNews";
     protected final String TAG = getClass().getSimpleName();
 
     ActivityMainBinding binding;
@@ -30,6 +34,9 @@ public class MainActivity extends BaseActivity implements Mvp.RequiredViewOperat
     private NewsRecyclerViewAdapter adapter;
 
     List retainList;
+
+    private boolean loading = true;
+    int pastVisiblesItems, visibleItemCount, totalItemCount;
 
     private final StateMaintainer stateMaintainer = new StateMaintainer(this.getSupportFragmentManager(), TAG);
 
@@ -48,22 +55,21 @@ public class MainActivity extends BaseActivity implements Mvp.RequiredViewOperat
         binding.recyclerView.addItemDecoration(itemDecoration);
         adapter.setNewsClickListener(this);
         binding.recyclerView.setAdapter(adapter);
+        binding.recyclerView.addOnScrollListener(recyclerViewOnScrollListener);
         binding.swipeRefresh.setOnRefreshListener(this);
 
         if(stateMaintainer.firstTimeIn()){
             presenter.getItems();
         }
         else {
-            List list = stateMaintainer.get(LIST_NEWS);
-            presenter.updateRetainItems(list);
+            presenter.updateRetainItems((List) stateMaintainer.get(LIST_NEWS), stateMaintainer.get(AFTER_NEWS));
         }
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-        stateMaintainer.put(LIST_NEWS, retainList);
         presenter.onDestroy(true);
+        super.onDestroy();
     }
 
     /* Start Mvp and manager your state */
@@ -82,12 +88,12 @@ public class MainActivity extends BaseActivity implements Mvp.RequiredViewOperat
         }
     }
 
-    private void initialize(Mvp.RequiredViewOperations view) throws InstantiationException, IllegalAccessException {
-        presenter = new ListItemPresenter(view);
+    private void initialize(Mvp.ViewOperations view) throws InstantiationException, IllegalAccessException {
+        presenter = new ListItemModelPresenter(view);
         stateMaintainer.put(Mvp.PresenterOperations.class.getSimpleName(), presenter);
     }
 
-    private void reinitialize(Mvp.RequiredViewOperations view) throws InstantiationException, IllegalAccessException {
+    private void reinitialize(Mvp.ViewOperations view) throws InstantiationException, IllegalAccessException {
         presenter = stateMaintainer.get(Mvp.PresenterOperations.class.getSimpleName());
         if (presenter == null) {
             initialize(view);
@@ -135,6 +141,20 @@ public class MainActivity extends BaseActivity implements Mvp.RequiredViewOperat
         adapter.addAll(list);
     }
 
+    @Override
+    public void addList(Object element) {
+        List<News> news = (List<News>) element;
+        retainList.addAll(news);
+        adapter.addAll(news);
+        loading = true;
+    }
+
+    @Override
+    public void saveViewElements(Object element){
+        stateMaintainer.put(LIST_NEWS, retainList);
+        stateMaintainer.put(AFTER_NEWS, element);
+    }
+
     /* View Listeners */
 
     @Override
@@ -146,4 +166,30 @@ public class MainActivity extends BaseActivity implements Mvp.RequiredViewOperat
     public void onRefresh() {
         presenter.updateItems();
     }
+
+    private RecyclerView.OnScrollListener recyclerViewOnScrollListener = new RecyclerView.OnScrollListener() {
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+        {
+            super.onScrolled(recyclerView, dx, dy);
+            LinearLayoutManager layoutManager = (LinearLayoutManager) binding.recyclerView.getLayoutManager();
+
+            if(dy > 0)
+            {
+                visibleItemCount = layoutManager.getChildCount();
+                totalItemCount = layoutManager.getItemCount();
+                pastVisiblesItems = layoutManager.findFirstVisibleItemPosition();
+
+                if (loading)
+                {
+                    if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount)
+                    {
+                        loading = false;
+                        presenter.getMoreItems();
+                    }
+                }
+            }
+        }
+    };
 }
