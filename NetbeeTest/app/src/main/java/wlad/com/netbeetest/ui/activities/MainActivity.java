@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import wlad.com.netbeetest.R;
 import wlad.com.netbeetest.databinding.ActivityMainBinding;
-import wlad.com.netbeetest.ui.fragments.ListItemFragment;
+import wlad.com.netbeetest.ui.fragments.RecyclerFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -18,7 +18,7 @@ public class MainActivity extends BaseActivity {
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         addToolbar(getResources().getString(R.string.main_title));
 
-        initFragment(ListItemFragment.newInstance());
+        initFragment(RecyclerFragment.newInstance());
     }
 
     void initFragment(Fragment fragment){
