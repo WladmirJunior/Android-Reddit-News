@@ -16,6 +16,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        addToolbar(getResources().getString(R.string.main_title));
 
         initFragment(ListItemFragment.newInstance());
     }
