@@ -75,6 +75,10 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         notifyDataSetChanged();
     }
 
+    public List<NewsData> getAll(){
+        return newsDataList;
+    }
+
     class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         final ImageView thumbImage;
