@@ -8,7 +8,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +119,12 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
 
     @Override
     public void showAlert(String msg) {
+        new MaterialDialog.Builder(this)
+                .content(R.string.message_error_dialog)
+                .positiveText(R.string.agree)
+                .show();
 
+        isEmptyList(retainList);
     }
 
     @Override
@@ -136,9 +144,11 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
 
     @Override
     public void updateList(List list) {
-        retainList = list;
-        adapter.clear();
-        adapter.addAll(list);
+        if (!isEmptyList(list)) {
+            retainList = list;
+            adapter.clear();
+            adapter.addAll(list);
+        }
     }
 
     @Override
@@ -153,6 +163,19 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
     public void saveViewElements(Object element){
         stateMaintainer.put(LIST_NEWS, retainList);
         stateMaintainer.put(AFTER_NEWS, element);
+    }
+
+    boolean isEmptyList(List list){
+        if(list == null || list.size() == 0) {
+            binding.emptyView.setVisibility(View.VISIBLE);
+            binding.recyclerView.setVisibility(View.GONE);
+            return true;
+        }
+        else{
+            binding.emptyView.setVisibility(View.GONE);
+            binding.recyclerView.setVisibility(View.VISIBLE);
+            return false;
+        }
     }
 
     /* View Listeners */
@@ -170,8 +193,7 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
     private RecyclerView.OnScrollListener recyclerViewOnScrollListener = new RecyclerView.OnScrollListener() {
 
         @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy)
-        {
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
             LinearLayoutManager layoutManager = (LinearLayoutManager) binding.recyclerView.getLayoutManager();
 

@@ -3,4 +3,7 @@
     <string name="main_title">Últimas notícias</string>
     <string name="load_message">Carregando informações…</string>
     <string name="load_title">Aguarde…</string>
+    <string name="message_error_dialog">Não foi possível carregar as informações!</string>
+    <string name="agree">Ok</string>
+    <string name="empty_message">Nenhuma notícia para mostrar</string>
 </resources>

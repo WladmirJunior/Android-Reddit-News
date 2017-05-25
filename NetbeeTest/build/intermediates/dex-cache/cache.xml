@@ -3,33 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="/home/wlad/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="6975da39a7040257bd51d21a231b76c915872d38">
-        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/javax.inject-1_5f63290407b97f2ee01a0171f2f7c39a9197fb82/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/wlad/.android/build-cache/4012c6624b85f983e2275e9db864bc89f560d4b9/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="7f2f348b830f292429db987f74ba3e67c6752322">
-        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6ad602f09aa02d003ce9b19e6d8833747f42cf4a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/wlad/.android/build-cache/739763490a0bab83004036ddcc05bfe0a015a3b4/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="68956f5ba1517b7a3d513ba540548e257741cbae">
-        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_31427d92c9b22812737836e7478af6b7ece56374/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/wlad/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/logging-interceptor/3.5.0/94c11f915bfe1aeaa5ef6351ddfbe58bae1ea397/logging-interceptor-3.5.0.jar"
         jumboMode="true"
         optimize="true"
@@ -66,6 +39,69 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/wlad/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.8.0/9bada650e1afe9c6174ddc0d113c1fce4dc26fe0/glide-3.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="9bada650e1afe9c6174ddc0d113c1fce4dc26fe0">
+        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.8.0_2aca9eb4394a19b52c6b168cb576f628c01c3c60/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/wlad/.android/build-cache/ca1505127a71f0ac81f1609b4c4318684342c23d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="807751a24cf96566fd8675517c94d8463cf364db">
+        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_20c25b0da8cb7cebb9823cdb45c2aaeef0afbdc6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/wlad/.android/build-cache/8afaaac654e6c8ecfe9a93b06eea9c5ad8b11f24/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a46c277098d453b4886db28568d627c283e53a04">
+        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_69a7a9738a04af262991604ba8e107e431c478c2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/wlad/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/javax.inject-1_5f63290407b97f2ee01a0171f2f7c39a9197fb82/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/wlad/.android/build-cache/4012c6624b85f983e2275e9db864bc89f560d4b9/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="7f2f348b830f292429db987f74ba3e67c6752322">
+        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6ad602f09aa02d003ce9b19e6d8833747f42cf4a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/wlad/.android/build-cache/6a9d0cae0482e3bea2c51f66bac019265f7d1c0b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b74e6684048d5e4a6db0f2552241966f85c78993">
+        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0c71d83326823c2d8cf48edbb6416a45cda2bb9e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/wlad/.android/build-cache/739763490a0bab83004036ddcc05bfe0a015a3b4/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="68956f5ba1517b7a3d513ba540548e257741cbae">
+        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_31427d92c9b22812737836e7478af6b7ece56374/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/wlad/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger/2.10/72b1eae80561b66f0a24b300ab0dfafde959eb58/dagger-2.10.jar"
         jumboMode="true"
         optimize="true"
@@ -84,21 +120,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/wlad/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.8.0/9bada650e1afe9c6174ddc0d113c1fce4dc26fe0/glide-3.8.0.jar"
+        jar="/home/wlad/.android/build-cache/881a04343625d42a0daface863e31597904463e5/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="9bada650e1afe9c6174ddc0d113c1fce4dc26fe0">
-        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.8.0_2aca9eb4394a19b52c6b168cb576f628c01c3c60/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/wlad/.android/build-cache/ca1505127a71f0ac81f1609b4c4318684342c23d/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="807751a24cf96566fd8675517c94d8463cf364db">
-        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_20c25b0da8cb7cebb9823cdb45c2aaeef0afbdc6/classes.dex" />
+        sha1="3d9320754ea0e0d68783a3456208a0211e0d2e37">
+        <dex dex="/home/wlad/AndroidStudioProjects/Android-Reddit-News/NetbeeTest/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e8c57ce24258e5793dcd96d30ef0ea3b39d80f81/classes.dex" />
     </item>
 
 </items>

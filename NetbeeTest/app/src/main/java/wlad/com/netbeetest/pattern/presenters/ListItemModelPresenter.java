@@ -95,6 +95,8 @@ public class ListItemModelPresenter implements Mvp.RequiredModelPresenterOperati
 
     @Override
     public void onError(String error) {
+        view.get().hideLoad();
+        view.get().hideRefresh();
         view.get().showAlert(error);
     }
 }
