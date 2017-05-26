@@ -1,15 +1,15 @@
 package wlad.com.netbeetest.ui.activities;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -19,6 +19,7 @@ import java.util.List;
 import wlad.com.netbeetest.R;
 import wlad.com.netbeetest.adpters.NewsRecyclerViewAdapter;
 import wlad.com.netbeetest.databinding.ActivityMainBinding;
+import wlad.com.netbeetest.helpers.CustomTabsHelper;
 import wlad.com.netbeetest.models.News;
 import wlad.com.netbeetest.models.NewsData;
 import wlad.com.netbeetest.pattern.StateMaintainer;
@@ -30,21 +31,25 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
 
     private static final String LIST_NEWS = "newsList";
     private static final String AFTER_NEWS = "afterNews";
-    protected final String TAG = getClass().getSimpleName();
+    private final String TAG = getClass().getSimpleName();
+    public static final String ERROR = "GenericError";
 
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
     private ProgressDialog progressDialog;
     private NewsRecyclerViewAdapter adapter;
 
-    List retainList;
+    private List retainList;
 
     private boolean loading = true;
-    int pastVisiblesItems, visibleItemCount, totalItemCount;
+    private int pastVisiblesItems;
+    private int visibleItemCount;
+    private int totalItemCount;
 
     private final StateMaintainer stateMaintainer = new StateMaintainer(this.getSupportFragmentManager(), TAG);
 
     private Mvp.PresenterOperations presenter;
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,14 +63,14 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
         binding.recyclerView.addItemDecoration(itemDecoration);
         adapter.setNewsClickListener(this);
         binding.recyclerView.setAdapter(adapter);
-        binding.recyclerView.addOnScrollListener(recyclerViewOnScrollListener);
+        binding.recyclerView.addOnScrollListener(getOnScrollListener());
         binding.swipeRefresh.setOnRefreshListener(this);
 
         if(stateMaintainer.firstTimeIn()){
-            presenter.getItems();
+            presenter.openRecycle();
         }
         else {
-            presenter.updateRetainItems((List) stateMaintainer.get(LIST_NEWS), stateMaintainer.get(AFTER_NEWS));
+            presenter.reloadSavedElements((List) stateMaintainer.get(LIST_NEWS), stateMaintainer.get(AFTER_NEWS));
         }
     }
 
@@ -91,7 +96,7 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
         }
     }
 
-    private void initialize(Mvp.ViewOperations view) throws InstantiationException, IllegalAccessException {
+    private void initialize(Mvp.ViewOperations view) {
         presenter = new ListItemModelPresenter(view);
         stateMaintainer.put(Mvp.PresenterOperations.class.getSimpleName(), presenter);
     }
@@ -108,23 +113,18 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
     /* View Contract */
 
     @Override
-    public Context getViewContext() {
-        return this;
-    }
-
-    @Override
-    public void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    public void openUrl(String url) {
+        CustomTabsIntent customTabsIntent = CustomTabsHelper.getInstance(this);
+        customTabsIntent.launchUrl(this, Uri.parse(url));
     }
 
     @Override
     public void showAlert(String msg) {
-        new MaterialDialog.Builder(this)
-                .content(R.string.message_error_dialog)
-                .positiveText(R.string.agree)
-                .show();
-
-        isEmptyList(retainList);
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(this);
+        if(msg.equals(ERROR)){
+            builder.content(R.string.message_error_dialog).positiveText(R.string.agree).show();
+            isEmptyList(retainList);
+        }
     }
 
     @Override
@@ -142,6 +142,7 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
         binding.swipeRefresh.setRefreshing(false);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void updateList(List list) {
         if (!isEmptyList(list)) {
@@ -151,12 +152,13 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void addList(Object element) {
-        List<News> news = (List<News>) element;
-        retainList.addAll(news);
-        adapter.addAll(news);
-        loading = true;
+            List<News> news = (List<News>) element;
+            retainList.addAll(news);
+            adapter.addAll(news);
+            loading = true;
     }
 
     @Override
@@ -165,7 +167,7 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
         stateMaintainer.put(AFTER_NEWS, element);
     }
 
-    boolean isEmptyList(List list){
+    private boolean isEmptyList(List list){
         if(list == null || list.size() == 0) {
             binding.emptyView.setVisibility(View.VISIBLE);
             binding.recyclerView.setVisibility(View.GONE);
@@ -182,36 +184,36 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
 
     @Override
     public void onItemClick(NewsData newsData) {
-        presenter.openItem(newsData);
+        presenter.clickOnItemRecycle(newsData);
     }
 
     @Override
     public void onRefresh() {
-        presenter.updateItems();
+        presenter.swipeToRefresh();
     }
 
-    private RecyclerView.OnScrollListener recyclerViewOnScrollListener = new RecyclerView.OnScrollListener() {
+    private RecyclerView.OnScrollListener getOnScrollListener() {
 
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-            LinearLayoutManager layoutManager = (LinearLayoutManager) binding.recyclerView.getLayoutManager();
+        return new RecyclerView.OnScrollListener() {
 
-            if(dy > 0)
-            {
-                visibleItemCount = layoutManager.getChildCount();
-                totalItemCount = layoutManager.getItemCount();
-                pastVisiblesItems = layoutManager.findFirstVisibleItemPosition();
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LinearLayoutManager layoutManager = (LinearLayoutManager) binding.recyclerView.getLayoutManager();
 
-                if (loading)
-                {
-                    if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount)
-                    {
-                        loading = false;
-                        presenter.getMoreItems();
+                if (dy > 0) {
+                    visibleItemCount = layoutManager.getChildCount();
+                    totalItemCount = layoutManager.getItemCount();
+                    pastVisiblesItems = layoutManager.findFirstVisibleItemPosition();
+
+                    if (loading) {
+                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                            loading = false;
+                            presenter.endingRecycle();
+                        }
                     }
                 }
             }
-        }
-    };
+        };
+    }
 }

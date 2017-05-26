@@ -1,7 +1,5 @@
 package wlad.com.netbeetest.pattern.contracts;
 
-import android.content.Context;
-
 import java.util.List;
 
 /**
@@ -11,8 +9,6 @@ import java.util.List;
 public interface Mvp {
 
     interface ViewOperations<T> {
-        Context getViewContext();
-        void showToast(String msg);
         void showAlert(String msg);
         void showLoad();
         void hideLoad();
@@ -20,21 +16,17 @@ public interface Mvp {
         void updateList(List list);
         void addList(T element);
         void saveViewElements(T element);
+        void openUrl(String url);
     }
 
     interface PresenterOperations<T>{
         void onConfigurationChanged(ViewOperations view);
         void onDestroy(boolean isChangingConfig);
-        void updateRetainItems(List list, T element);
-        void getItems();
-        void updateItems();
-        void getMoreItems();
-        void openItem(Object item);
-    }
-
-    interface RequiredModelPresenterOperations<T> {
-        void onReceiverResponse(T element);
-        void onError(String error);
+        void reloadSavedElements(List list, T element);
+        void openRecycle();
+        void swipeToRefresh();
+        void endingRecycle();
+        void clickOnItemRecycle(Object item);
     }
 
     interface ModelOperations{

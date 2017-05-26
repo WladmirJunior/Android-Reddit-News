@@ -1,33 +1,36 @@
 package wlad.com.netbeetest.pattern.presenters;
 
-import android.net.Uri;
-import android.support.customtabs.CustomTabsIntent;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-import wlad.com.netbeetest.helpers.CustomTabsHelper;
+import wlad.com.netbeetest.events.ErrorResponse;
+import wlad.com.netbeetest.events.ReceiverResponse;
 import wlad.com.netbeetest.models.NewsData;
 import wlad.com.netbeetest.models.NewsList;
 import wlad.com.netbeetest.pattern.contracts.Mvp;
 import wlad.com.netbeetest.pattern.models.NewsListModel;
 
+import static wlad.com.netbeetest.ui.activities.MainActivity.ERROR;
+
 /**
  * Created by wlad on 24/05/17.
  */
 
-public class ListItemModelPresenter implements Mvp.RequiredModelPresenterOperations, Mvp.PresenterOperations {
+public class ListItemModelPresenter implements Mvp.PresenterOperations {
 
     private WeakReference<Mvp.ViewOperations> view;
     private Mvp.ModelOperations model;
     private NewsList newsList;
 
     private boolean loadMore;
-    private boolean isChangeConfig;
 
     public ListItemModelPresenter(Mvp.ViewOperations view) {
         this.view = new WeakReference<>(view);
-        this.model = new NewsListModel(this);
+        this.model = new NewsListModel();
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -40,49 +43,49 @@ public class ListItemModelPresenter implements Mvp.RequiredModelPresenterOperati
     public void onDestroy(boolean isChangingConfig) {
         view.get().saveViewElements(newsList);
         view = null;
-        this.isChangeConfig = isChangingConfig;
-        if(!isChangingConfig) model.onDestroy();
+        if(!isChangingConfig) {
+            model.onDestroy();
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     @Override
-    public void updateRetainItems(List list, Object element) {
+    public void reloadSavedElements(List list, Object element) {
         view.get().updateList(list);
         newsList = (NewsList) element;
     }
 
     @Override
-    public void getItems() {
+    public void openRecycle() {
         view.get().showLoad();
         model.getResponse();
     }
 
     @Override
-    public void updateItems() {
+    public void swipeToRefresh() {
         loadMore = false;
         model.getResponse();
     }
 
     @Override
-    public void getMoreItems() {
+    public void endingRecycle() {
         loadMore = true;
         model.getResponse(newsList.getNewsAfter());
     }
 
     @Override
-    public void openItem(Object o) {
+    public void clickOnItemRecycle(Object o) {
         if(o instanceof NewsData){
-            NewsData newsData = (NewsData) o;
-            CustomTabsIntent customTabsIntent = CustomTabsHelper.getInstance(view.get().getViewContext());
-            customTabsIntent.launchUrl(view.get().getViewContext(), Uri.parse(newsData.getUrl()));
+            view.get().openUrl(((NewsData) o).getUrl());
         }
     }
 
     /* NewsListModel Operations */
 
-    @Override
     @SuppressWarnings("unchecked")
-    public void onReceiverResponse(Object element) {
-        newsList = (NewsList) element;
+    @Subscribe
+    public void onReceiverResponse(ReceiverResponse event) {
+        newsList = (NewsList) event.element;
         if(!loadMore){
             view.get().hideLoad();
             view.get().hideRefresh();
@@ -93,10 +96,10 @@ public class ListItemModelPresenter implements Mvp.RequiredModelPresenterOperati
         }
     }
 
-    @Override
-    public void onError(String error) {
+    @Subscribe
+    public void onErrorResponse(ErrorResponse event) {
         view.get().hideLoad();
         view.get().hideRefresh();
-        view.get().showAlert(error);
+        view.get().showAlert(ERROR);
     }
 }
