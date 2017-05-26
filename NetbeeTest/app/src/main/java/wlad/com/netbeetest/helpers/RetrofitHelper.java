@@ -9,7 +9,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class RetrofitHelper {
 
-    private static final String BASE_URL = "https://www.reddit.com/r/Android/new/";
+    private static final String BASE_URL = "https://www.reddit.com";
 
     public static Retrofit getInstance(){
         return new Retrofit.Builder()

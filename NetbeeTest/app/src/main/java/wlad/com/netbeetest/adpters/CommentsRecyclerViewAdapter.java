@@ -5,10 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +18,7 @@ import wlad.com.netbeetest.models.NewsData;
  * Created by wlad on 22/05/17.
  */
 
-public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerViewAdapter.NewsViewHolder> {
+public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<CommentsRecyclerViewAdapter.NewsViewHolder> {
 
     public interface NewsClickListener{
         void onItemClick(NewsData newsData);
@@ -31,7 +28,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
     private List<NewsData> newsDataList;
     private NewsClickListener newsClickListener;
 
-    public NewsRecyclerViewAdapter(Context context, List<NewsData> newsDataList) {
+    public CommentsRecyclerViewAdapter(Context context, List<NewsData> newsDataList) {
         this.context = context;
         this.newsDataList = newsDataList;
     }
@@ -42,18 +39,14 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
 
     @Override
     public NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_recycler, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.comment_recycler, parent, false);
         return new NewsViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
-        holder.title.setText(newsDataList.get(position).getTitle());
-        holder.author.setText(String.format("Submitted by %s", newsDataList.get(position).getAuthor()));
-        Glide.with(context)
-                .load(newsDataList.get(position).getThumbnail())
-                .placeholder(R.drawable.default_image)
-                .into(holder.thumbImage);
+        holder.body.setText(newsDataList.get(position).getBody());
+        holder.author.setText(newsDataList.get(position).getAuthor());
     }
 
     @Override
@@ -81,14 +74,16 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
 
     class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        final ImageView thumbImage;
-        final TextView title;
+        final TextView body;
         final TextView author;
+
+        void configure(){
+            author.setText("");
+        }
 
         NewsViewHolder(View itemView) {
             super(itemView);
-            thumbImage = (ImageView) itemView.findViewById(R.id.image_thumb);
-            title = (TextView) itemView.findViewById(R.id.text_title);
+            body = (TextView) itemView.findViewById(R.id.text_title);
             author = (TextView) itemView.findViewById(R.id.text_author);
             itemView.setOnClickListener(this);
         }

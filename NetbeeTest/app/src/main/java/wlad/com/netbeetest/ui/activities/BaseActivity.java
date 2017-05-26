@@ -11,9 +11,15 @@ import wlad.com.netbeetest.R;
 
 public class BaseActivity extends AppCompatActivity {
 
-    protected void addToolbar(String title){
+    protected void addToolbar(String title) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_toolbar);
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

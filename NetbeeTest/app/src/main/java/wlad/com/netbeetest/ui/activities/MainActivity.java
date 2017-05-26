@@ -1,11 +1,10 @@
 package wlad.com.netbeetest.ui.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,26 +18,26 @@ import java.util.List;
 import wlad.com.netbeetest.R;
 import wlad.com.netbeetest.adpters.NewsRecyclerViewAdapter;
 import wlad.com.netbeetest.databinding.ActivityMainBinding;
-import wlad.com.netbeetest.helpers.CustomTabsHelper;
 import wlad.com.netbeetest.models.News;
 import wlad.com.netbeetest.models.NewsData;
 import wlad.com.netbeetest.pattern.StateMaintainer;
 import wlad.com.netbeetest.pattern.contracts.Mvp;
-import wlad.com.netbeetest.pattern.presenters.ListItemModelPresenter;
+import wlad.com.netbeetest.pattern.presenters.MainPresenter;
 import wlad.com.netbeetest.utils.VerticalSpaceItemDecoration;
 
-public class MainActivity extends BaseActivity implements Mvp.ViewOperations, NewsRecyclerViewAdapter.NewsClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends BaseActivity implements Mvp.MainViewOperations, NewsRecyclerViewAdapter.NewsClickListener, SwipeRefreshLayout.OnRefreshListener {
+
+    public static final String DATA_SCREEN = "data";
+    public static final String ERROR = "GenericError";
 
     private static final String LIST_NEWS = "newsList";
-    private static final String AFTER_NEWS = "afterNews";
     private final String TAG = getClass().getSimpleName();
-    public static final String ERROR = "GenericError";
 
     private ActivityMainBinding binding;
     private ProgressDialog progressDialog;
     private NewsRecyclerViewAdapter adapter;
 
-    private List retainList;
+    private List<News> newsList;
 
     private boolean loading = true;
     private int pastVisiblesItems;
@@ -47,7 +46,7 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
 
     private final StateMaintainer stateMaintainer = new StateMaintainer(this.getSupportFragmentManager(), TAG);
 
-    private Mvp.PresenterOperations presenter;
+    private Mvp.MainPresenterOperations presenter;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -70,7 +69,7 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
             presenter.openRecycle();
         }
         else {
-            presenter.reloadSavedElements((List) stateMaintainer.get(LIST_NEWS), stateMaintainer.get(AFTER_NEWS));
+            presenter.reloadSavedElements(stateMaintainer.get(LIST_NEWS));
         }
     }
 
@@ -96,13 +95,13 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
         }
     }
 
-    private void initialize(Mvp.ViewOperations view) {
-        presenter = new ListItemModelPresenter(view);
-        stateMaintainer.put(Mvp.PresenterOperations.class.getSimpleName(), presenter);
+    private void initialize(Mvp.MainViewOperations view) {
+        presenter = new MainPresenter(view);
+        stateMaintainer.put(Mvp.MainPresenterOperations.class.getSimpleName(), presenter);
     }
 
-    private void reinitialize(Mvp.ViewOperations view) throws InstantiationException, IllegalAccessException {
-        presenter = stateMaintainer.get(Mvp.PresenterOperations.class.getSimpleName());
+    private void reinitialize(Mvp.MainViewOperations view) throws InstantiationException, IllegalAccessException {
+        presenter = stateMaintainer.get(Mvp.MainPresenterOperations.class.getSimpleName());
         if (presenter == null) {
             initialize(view);
         } else {
@@ -113,9 +112,10 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
     /* View Contract */
 
     @Override
-    public void openUrl(String url) {
-        CustomTabsIntent customTabsIntent = CustomTabsHelper.getInstance(this);
-        customTabsIntent.launchUrl(this, Uri.parse(url));
+    public void goToScreen(Class screen, NewsData data) {
+        Intent intent = new Intent(this, screen);
+        intent.putExtra(DATA_SCREEN, data);
+        startActivity(intent);
     }
 
     @Override
@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
         MaterialDialog.Builder builder = new MaterialDialog.Builder(this);
         if(msg.equals(ERROR)){
             builder.content(R.string.message_error_dialog).positiveText(R.string.agree).show();
-            isEmptyList(retainList);
+            isEmptyList(newsList);
         }
     }
 
@@ -138,33 +138,41 @@ public class MainActivity extends BaseActivity implements Mvp.ViewOperations, Ne
     }
 
     @Override
+    public void showListLoad() {
+        binding.progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideListLoad() {
+        binding.progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
     public void hideRefresh() {
         binding.swipeRefresh.setRefreshing(false);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public void updateList(List list) {
-        if (!isEmptyList(list)) {
-            retainList = list;
+    public void updateList(Object element) {
+        newsList = (List<News>) element;
+        if (!isEmptyList(newsList)) {
             adapter.clear();
-            adapter.addAll(list);
+            adapter.addAll(newsList);
         }
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public void addList(Object element) {
-            List<News> news = (List<News>) element;
-            retainList.addAll(news);
-            adapter.addAll(news);
-            loading = true;
+        List<News> list = (List<News>) element;
+        newsList.addAll(list);
+        adapter.addAll(list);
+        loading = true;
     }
 
     @Override
     public void saveViewElements(Object element){
-        stateMaintainer.put(LIST_NEWS, retainList);
-        stateMaintainer.put(AFTER_NEWS, element);
+        stateMaintainer.put(LIST_NEWS, element);
     }
 
     private boolean isEmptyList(List list){
